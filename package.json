@@ -4,6 +4,7 @@
   "main": "index.js",
   "devDependencies": {
     "@bazel/typescript": "^0.11.1",
+    "@types/node": "^11.12.0",
     "@types/react": "^16.0.40",
     "typescript": "^2.7.2"
   },
