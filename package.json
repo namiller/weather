@@ -1,0 +1,13 @@
+{
+  "name": "weather",
+  "version": "0.0.1",
+  "main": "index.js",
+  "devDependencies": {
+    "@bazel/typescript": "^0.11.1",
+    "@types/react": "^16.0.40",
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "react": "^16.2.0"
+  }
+}
