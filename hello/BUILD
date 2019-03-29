@@ -10,5 +10,14 @@ nodejs_binary(
 ts_library(
     name = "main",
     srcs = ["main.ts"],
+    deps = [
+        ":greeter",
+    ],
+    tsconfig = "tsconfig.json",
+)
+
+ts_library(
+    name = "greeter",
+    srcs = ["lib.ts"],
     tsconfig = "tsconfig.json",
 )
