@@ -1,6 +1,6 @@
 import {Location, City, Zip} from "weather/service/location";
 import {WeatherApiEndpoint, WeatherReport, Wind} from "weather/service/weather";
-import {UrlFetcher} from "weather/service/utils/url_fetcher";
+import {UrlFetcher, GetUrlFetcher} from "weather/service/utils/url_fetcher";
 
 interface OpenWeatherWeather {
   id: number;
@@ -29,6 +29,9 @@ interface OpenWeatherResponse {
 
 function ToReport(response: OpenWeatherResponse): WeatherReport {
   let report = new WeatherReport();
+  if (!response.weather || response.weather.length == 0 || !response.main) {
+    return null;
+  }
   report.description = response.weather[0].description;
   report.wind = new Wind();
   report.wind.speed_mps = response.wind.speed;
@@ -41,19 +44,23 @@ function ToReport(response: OpenWeatherResponse): WeatherReport {
 
 export class OpenWeatherEndpoint implements WeatherApiEndpoint {
   private fetcher: UrlFetcher;
+  private key: string;
 
-  constructor(fetcher: UrlFetcher) {
+  constructor(fetcher: UrlFetcher, key: string) {
     this.fetcher = fetcher;
+    this.key = key;
   }
 
   async FetchWeather(location: Location): Promise<WeatherReport> {
-    const url = formatQuery(location);
+    const url = formatQuery(location) + "&appid=" + this.key;
     return this.fetcher.fetchJson<OpenWeatherResponse>(url).then(response => ToReport(response));
   }
 }
 
+export const open_weather = new OpenWeatherEndpoint(new GetUrlFetcher(), "249e4cba36ae5fef250f0e4e635f4192");
+
 function formatQuery(location: Location): string {
-  let url = "api.openweathermap.org/data/2.5/weather?";
+  let url = "http://api.openweathermap.org/data/2.5/weather?";
   if (location instanceof City) {
     return url + cityQuery(location);
   }
