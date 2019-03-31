@@ -2,6 +2,43 @@ import {Location, City, Zip} from "weather/service/location";
 import {WeatherApiEndpoint, WeatherReport, Wind} from "weather/service/weather";
 import {UrlFetcher} from "weather/service/utils/url_fetcher";
 
+interface OpenWeatherWeather {
+  id: number;
+  main: string;
+  description: string;
+}
+
+interface OpenWeatherMain {
+  temp: number;
+  humidity: number;
+  pressure: number;
+  temp_min: number;
+  temp_max: number;
+}
+
+interface OpenWeatherWind {
+  speed: number;
+  deg: number;
+}
+
+interface OpenWeatherResponse {
+  weather: Array<OpenWeatherWeather>;
+  main: OpenWeatherMain;
+  wind: OpenWeatherWind;
+}
+
+function ToReport(response: OpenWeatherResponse): WeatherReport {
+  let report = new WeatherReport();
+  report.description = response.weather[0].description;
+  report.wind = new Wind();
+  report.wind.speed_mps = response.wind.speed;
+  report.wind.heading_deg = response.wind.deg;
+  report.temperature_k = response.main.temp;
+  report.humidity = response.main.humidity;
+  report.pressure_barr = response.main.pressure;
+  return report;
+}
+
 export class OpenWeatherEndpoint implements WeatherApiEndpoint {
   private fetcher: UrlFetcher;
 
@@ -9,9 +46,9 @@ export class OpenWeatherEndpoint implements WeatherApiEndpoint {
     this.fetcher = fetcher;
   }
 
-  FetchWeather(location: Location): Promise<WeatherReport> {
-    // TODO(namiller): Implement.
-    return Promise.resolve(new WeatherReport());
+  async FetchWeather(location: Location): Promise<WeatherReport> {
+    const url = formatQuery(location);
+    return this.fetcher.fetchJson<OpenWeatherResponse>(url).then(response => ToReport(response));
   }
 }
 
