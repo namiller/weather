@@ -1,6 +1,6 @@
 import {Location} from "weather/service/location";
 
-class Wind {
+export class Wind {
   speed_mps: number;
   heading_deg: number;
   public toString(): string {

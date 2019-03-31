@@ -20,6 +20,7 @@ ts_library(
 
 ts_library(
     name = "location",
+    visibility = ["//visibility:public"],
     srcs = ["location.ts"],
     deps = [
         "@npm//@types/node",
@@ -28,6 +29,7 @@ ts_library(
 
 ts_library(
     name = "time",
+    visibility = ["//visibility:public"],
     srcs = ["time.ts"],
     deps = [
         ":location",
@@ -36,6 +38,7 @@ ts_library(
 
 ts_library(
     name = "weather",
+    visibility = ["//visibility:public"],
     srcs = ["weather.ts"],
     deps = [
         ":location",
