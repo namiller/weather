@@ -1,4 +1,3 @@
-load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_test")
 load("@npm_bazel_jasmine//:index.bzl", "jasmine_node_test")
 load("@npm_bazel_typescript//:index.bzl", "ts_library")
 
