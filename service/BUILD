@@ -1,5 +1,5 @@
 load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
-load("@build_bazel_rules_typescript//:defs.bzl", "ts_library")
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
 
 nodejs_binary(
     name = "report",
@@ -11,30 +11,33 @@ ts_library(
     name = "main",
     srcs = ["main.ts"],
     deps = [
-        ":location_parser",
-        ":time_fetcher",
-        ":weather_fetcher",
+        ":location",
+        ":time",
+        ":weather",
+        "@npm//@types/node",
     ],
-    tsconfig = "tsconfig.json",
 )
 
 ts_library(
-    name = "location_parser",
-    srcs = ["location_parser.ts"],
-    deps = [],
-    tsconfig = "tsconfig.json",
+    name = "location",
+    srcs = ["location.ts"],
+    deps = [
+        "@npm//@types/node",
+    ],
 )
 
 ts_library(
-    name = "time_fetcher",
-    srcs = ["time_fetcher.ts"],
-    deps = [],
-    tsconfig = "tsconfig.json",
+    name = "time",
+    srcs = ["time.ts"],
+    deps = [
+        ":location",
+    ],
 )
 
 ts_library(
-    name = "weather_fetcher",
-    srcs = ["weather_fetcher.ts"],
-    deps = [],
-    tsconfig = "tsconfig.json",
+    name = "weather",
+    srcs = ["weather.ts"],
+    deps = [
+        ":location",
+    ],
 )
