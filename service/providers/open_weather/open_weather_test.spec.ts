@@ -1,5 +1,5 @@
 import {Zip, City} from "weather/service/location";
-import {OpenWeatherEndpoint} from "weather/service/providers/open_weather";
+import {OpenWeatherEndpoint} from "weather/service/providers/open_weather/open_weather";
 import {MockGetFetcher} from "weather/service/utils/mock_url_fetcher";
 
 describe("OpenWeather unit tests", function() {

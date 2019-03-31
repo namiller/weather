@@ -1,5 +1,5 @@
 import {Zip, City} from "weather/service/location";
-import {open_weather} from "weather/service/providers/open_weather";
+import {open_weather} from "weather/service/providers/open_weather/open_weather";
 
 describe("OpenWeather integration tests", function() {
   it("valid response (zip)", async function() {
