@@ -1,5 +1,5 @@
 load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
-load("@build_bazel_rules_typescript//:defs.bzl", "ts_library")
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
 
 nodejs_binary(
     name = "hello",
@@ -12,12 +12,11 @@ ts_library(
     srcs = ["main.ts"],
     deps = [
         ":greeter",
+        "@npm//@types/node",
     ],
-    tsconfig = "tsconfig.json",
 )
 
 ts_library(
     name = "greeter",
     srcs = ["lib.ts"],
-    tsconfig = "tsconfig.json",
 )

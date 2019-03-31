@@ -3,12 +3,21 @@
   "version": "0.0.1",
   "main": "index.js",
   "devDependencies": {
-    "@bazel/typescript": "^0.11.1",
+    "@bazel/bazel": "^0.24.0",
+    "@bazel/buildifier": "^0.22.0",
+    "@bazel/ibazel": "^0.10.0",
+    "@bazel/jasmine": "^0.27.9",
+    "@bazel/typescript": "^0.27.9",
+    "@types/jasmine": "^3.3.12",
     "@types/node": "^11.12.0",
+    "@types/node-fetch": "^2.1.7",
     "@types/react": "^16.0.40",
+    "jasmine": "^3.3.1",
+    "node-fetch": "^2.3.0",
     "typescript": "^2.7.2"
   },
   "dependencies": {
+    "@types/node-fetch": "^2.1.7",
     "react": "^16.2.0"
   }
 }
