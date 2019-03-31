@@ -14,6 +14,9 @@ interface ZipCodeResponse {
 }
 
 function ToTimeZone(response: ZipCodeResponse) {
+  if (!response || !response.timezone) {
+    return null;
+  }
   let timezone = new TimeZone();
   timezone.identifier = response.timezone.timezone_identifier;
   timezone.abbreviation = response.timezone.timezone_abbr;
@@ -21,7 +24,7 @@ function ToTimeZone(response: ZipCodeResponse) {
   return timezone;
 }
 
-export class ZipCodeTime implements TimeApiEndpoint {
+export class ZipCodeTimeEndpoint implements TimeApiEndpoint {
   fetcher: UrlFetcher;
   key: string;
   constructor(fetcher: UrlFetcher, key: string) {
@@ -41,4 +44,4 @@ function composeQuery(location: Zip, key: string): string {
   return `https://www.zipcodeapi.com/rest/${key}/info.json/${location.location}`;
 }
 
-export const zipcode_time = new ZipCodeTime(new GetUrlFetcher(), "uGSC7Zn8YKoaJ2JVTwUC4xwCtiQ59wxwlLkO0AhZOqZQJkqkVPCb2qMtjYrJoIjD");
+export const zipcode_time = new ZipCodeTimeEndpoint(new GetUrlFetcher(), "uGSC7Zn8YKoaJ2JVTwUC4xwCtiQ59wxwlLkO0AhZOqZQJkqkVPCb2qMtjYrJoIjD");
