@@ -21,7 +21,15 @@ for (const location of locations) {
     console.log(`Sorry, unable to lookup ${location}`)
   } else {
     Promise.all([timezone_report, weather_report]).then(([timezone_report, weather_report]) => {
-      console.log(`The current time in ${location} is ${timezone_report.Time()} and the weather is ${weather_report}.`)
+      if (!timezone_report && !weather_report) {
+        console.log(`Sorry, no data found for ${location}`)
+      } else if (!weather_report) {
+        console.log(`No weather data found for ${location}, but the time is ${timezone_report.Time()}`)
+      } else if (!timezone_report) {
+        console.log(`No time data found for ${location}, but the weather is ${weather_report}`)
+      } else {
+        console.log(`The current time in ${location} is ${timezone_report.Time()} and the weather is ${weather_report}.`)
+      }
     })
   }
 }
