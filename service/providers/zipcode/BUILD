@@ -38,6 +38,7 @@ ts_library(
 
 ts_library(
     name = "zipcode",
+    visibility = ["//visibility:public"],
     srcs = ["zipcode.ts"],
     deps = [
         "//service/utils:url_fetcher",
