@@ -17,7 +17,7 @@ function ToTimeZone(response: ZipCodeResponse) {
   if (!response || !response.timezone) {
     return null
   }
-  let timezone = new TimeZone()
+  const timezone = new TimeZone()
   timezone.identifier = response.timezone.timezone_identifier
   timezone.abbreviation = response.timezone.timezone_abbr
   timezone.utc_offset = response.timezone.utc_offset_sec

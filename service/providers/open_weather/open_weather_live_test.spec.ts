@@ -3,7 +3,7 @@ import {open_weather} from "weather/service/providers/open_weather/open_weather"
 
 describe("OpenWeather integration tests", function() {
   it("valid response (zip)", async function() {
-    let response = await open_weather.FetchWeather(new Zip("94040"))
+    const response = await open_weather.FetchWeather(new Zip("94040"))
     expect(response).toBeDefined()
     expect(response.description).toBeDefined()
     expect(response.wind).toBeDefined()
@@ -15,7 +15,7 @@ describe("OpenWeather integration tests", function() {
   })
 
   it("valid response (city)", async function() {
-    let response = await open_weather.FetchWeather(new City("London"))
+    const response = await open_weather.FetchWeather(new City("London"))
     expect(response).toBeDefined()
     expect(response.description).toBeDefined()
     expect(response.wind).toBeDefined()
@@ -27,7 +27,7 @@ describe("OpenWeather integration tests", function() {
   })
 
   it("invalid city", async function() {
-    let response = await open_weather.FetchWeather(new City("badcity"))
+    const response = await open_weather.FetchWeather(new City("badcity"))
     expect(response).toBeNull()
   })
 })

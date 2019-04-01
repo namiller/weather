@@ -9,14 +9,14 @@ if (process.argv.length <= 2) {
   process.exit(-1)
 }
 
-let argument_list = process.argv.slice(2, process.argv.length)
-let argument_string = argument_list.join(" ")
+const argument_list = process.argv.slice(2, process.argv.length)
+const argument_string = argument_list.join(" ")
 
-let locations = parseLocations(argument_string)
+const locations = parseLocations(argument_string)
 
-for (let location of locations) {
-  let timezone_report = timezones.FetchTime(location)
-  let weather_report = weather.FetchWeather(location)
+for (const location of locations) {
+  const timezone_report = timezones.FetchTime(location)
+  const weather_report = weather.FetchWeather(location)
   if (!timezone_report || !weather_report) {
     console.log(`Sorry, unable to lookup ${location}`)
   } else {

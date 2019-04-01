@@ -42,7 +42,7 @@ function ToTimeZone(response: BingTimeResponse) {
     return null
   }
   const timeZone = timeZoneAtLocation.timeZone[0]
-  let result = new TimeZone()
+  const result = new TimeZone()
   result.identifier = timeZone.ianaTimeZoneId
   result.abbreviation = timeZone.abbreviation
   return result

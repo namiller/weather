@@ -36,10 +36,10 @@ function createLocation(location:string): Location {
 }
 
 export function parseLocations(locations: string) {
-  let result: Array<Location> = []
+  const result: Array<Location> = []
   for (let loc of locations.split(",")) {
     loc = loc.trim()
-    let location = createLocation(loc)
+    const location = createLocation(loc)
     result.push(location)
   }
   return result

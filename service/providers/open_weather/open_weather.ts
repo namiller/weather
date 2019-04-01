@@ -28,7 +28,7 @@ interface OpenWeatherResponse {
 }
 
 function ToReport(response: OpenWeatherResponse): WeatherReport {
-  let report = new WeatherReport()
+  const report = new WeatherReport()
   if (!response.weather || response.weather.length == 0 || !response.main) {
     return null
   }
@@ -60,7 +60,7 @@ export class OpenWeatherEndpoint implements WeatherApiEndpoint {
 export const open_weather = new OpenWeatherEndpoint(new GetUrlFetcher(), "249e4cba36ae5fef250f0e4e635f4192")
 
 function formatQuery(location: Location): string {
-  let url = "http://api.openweathermap.org/data/2.5/weather?"
+  const url = "http://api.openweathermap.org/data/2.5/weather?"
   if (location instanceof City) {
     return url + cityQuery(location)
   }
