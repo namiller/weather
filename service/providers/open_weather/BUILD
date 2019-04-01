@@ -38,6 +38,7 @@ ts_library(
 
 ts_library(
     name = "open_weather",
+    visibility = ["//visibility:public"],
     srcs = ["open_weather.ts"],
     deps = [
         "//service/utils:url_fetcher",
