@@ -5,6 +5,7 @@ nodejs_binary(
     name = "report",
     data = [":main"],
     entry_point = "weather/service/main.js",
+    node_modules = "@npm//:node_modules",
 )
 
 ts_library(
@@ -14,6 +15,8 @@ ts_library(
         ":location",
         ":time",
         ":weather",
+        "//service/providers:time_provider",
+        "//service/providers:weather_provider",
         "@npm//@types/node",
     ],
 )

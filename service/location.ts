@@ -40,7 +40,6 @@ export function parseLocations(locations: string) {
   for (let loc of locations.split(",")) {
     loc = loc.trim();
     let location = createLocation(loc);
-    console.log(`location: ${location}`);
     result.push(location);
   }
   return result;
